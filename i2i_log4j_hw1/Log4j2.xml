@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="RollingDebug"
+                     fileName="C:\Users\mherald\Desktop\log_files_i2i\debug.log"
+                     filePattern="C:\Users\mherald\Desktop\log_files_i2i\debug-%d{yyyy-MM-dd-HH-mm-ss}.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="C:\Users\mherald\Desktop\log_files_i2i" maxDepth="1">
+                    <IfFileName glob="debug-*.log" />
+                    <IfLastModified age="1d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="RollingInfo"
+                     fileName="C:\Users\mherald\Desktop\log_files_i2i\info.log"
+                     filePattern="C:\Users\mherald\Desktop\log_files_i2i\info-%d{yyyy-MM-dd-HH-mm-ss}.log">
+            <PatternLayout>
+                <Pattern>%d{HH:00:00} %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="C:\Users\mherald\Desktop\log_files_i2i" maxDepth="1">
+                    <IfFileName glob="info-*.log" />
+                    <IfLastModified age="1d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="RollingError"
+                     fileName="C:\Users\mherald\Desktop\log_files_i2i\error.log"
+                     filePattern="C:\Users\mherald\Desktop\log_files_i2i\error-%d{yyyy-MM-dd-HH-mm-ss}.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:00} %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="C:\Users\mherald\Desktop\log_files_i2i" maxDepth="1">
+                    <IfFileName glob="error-*.log" />
+                    <IfLastModified age="1d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="RollingDebug" level="debug"/>
+            <AppenderRef ref="RollingInfo" level="info"/>
+            <AppenderRef ref="RollingError" level="error"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
